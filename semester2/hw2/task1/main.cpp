@@ -1,8 +1,15 @@
 #include <iostream>
 #include "list.h"
 #include "pointerList.h"
+#include "arrayList.h"
 
-int main()
+enum ListTypes
+{
+    pointer,
+    array
+};
+
+void test(ListTypes type)
 {
     enum Operations
     {
@@ -13,11 +20,18 @@ int main()
         end = 0
     };
 
-    bool finished = false;
-    List *list = new PointerList();
-    while (!finished)
+    List *list = NULL;
+    if (type == pointer)
+        list = new PointerList();
+    else
+        list = new ArrayList();
+    while (true)
     {
-        std::cout << "Тестирование связного списка на указателях" << std::endl;
+        std::cout << "Тестирование связного списка на ";
+        if (type == pointer)
+            std::cout << "указателях" << std::endl;
+        else
+            std::cout << "массиве" << std::endl;
         std::cout << "Возможные операции:" << std::endl;
         std::cout << add << " - добавить элемент" << std::endl;
         std::cout << del << " - удалить элемент" << std::endl;
@@ -67,8 +81,7 @@ int main()
             }
             case end:
             {
-                finished = true;
-                break;
+                return;
             }
             default:
             {
@@ -77,5 +90,11 @@ int main()
             }
         }
     }
+}
+
+int main()
+{
+    test(pointer);
+    test(array);
 }
 
