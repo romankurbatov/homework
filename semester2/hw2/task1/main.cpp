@@ -39,7 +39,7 @@ void test(ListTypes type)
         std::cout << check << " - проверить наличие элемента" << std::endl;
         std::cout << end << " - закончить тестирование" << std::endl;
         int operationNumber = end;
-        std::cout << "Введите номер оперции: ";
+        std::cout << "Введите номер операции: ";
         std::cin >> operationNumber;
         switch (operationNumber)
         {
