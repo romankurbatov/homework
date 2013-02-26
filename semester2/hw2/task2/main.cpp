@@ -1,11 +1,12 @@
 #include <iostream>
 #include "stack.h"
 #include "pointerStack.h"
+#include "arrayStack.h"
 
 enum StackType
 {
     pointer,
-    type
+    array
 };
 
 void test(StackType type)
@@ -21,11 +22,18 @@ void test(StackType type)
     };
 
     Stack *stack = NULL;
-    stack = new PointerStack();
+    if (type == pointer)
+        stack = new PointerStack();
+    else
+        stack = new ArrayStack();
+
     while (true)
     {
         std::cout << "Тестирование стека на ";
-        std::cout << "указателях" << std::endl;
+        if (type == pointer)
+            std::cout << "указателях" << std::endl;
+        else
+            std::cout << "массиве" << std::endl;
         std::cout << "Возможные действия:" << std::endl;
         std::cout << push << " - вставить элемент" << std::endl;
         std::cout << pop << " - извлечь элемент" << std::endl;
@@ -95,5 +103,6 @@ void test(StackType type)
 int main()
 {
     test(pointer);
+    test(array);
 }
 

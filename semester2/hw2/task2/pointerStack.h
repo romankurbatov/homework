@@ -14,7 +14,7 @@ public:
     ~PointerStack();
     void push(int value);
     int pop();
-    int peek();
+    int peek() const;
     bool isEmpty() const;
     bool isFull() const;
 private:

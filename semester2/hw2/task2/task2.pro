@@ -3,9 +3,11 @@ CONFIG += console
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    pointerStack.cpp
+    pointerStack.cpp \
+    arrayStack.cpp
 
 HEADERS += \
     stack.h \
-    pointerStack.h
+    pointerStack.h \
+    arrayStack.h
 

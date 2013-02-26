@@ -36,7 +36,7 @@ int PointerStack::pop()
     return value;
 }
 
-int PointerStack::peek()
+int PointerStack::peek() const
 {
     if (top == NULL)
         return 0;
