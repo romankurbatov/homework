@@ -1,6 +1,5 @@
 #include <iostream>
 #include "pointerList.h"
-#include "pointerListNode.h"
 
 PointerList::PointerList()
 {
@@ -9,47 +8,72 @@ PointerList::PointerList()
 
 PointerList::~PointerList()
 {
-    if (head != NULL)
+    if (head == NULL)
+        return;
+    PointerListNode *currentNode = head;
+    while (currentNode != NULL)
     {
-        head->delList();
-        delete head;
+        PointerListNode *removingNode = currentNode;
+        currentNode = currentNode->next;
+        delete removingNode;
     }
+}
+
+bool PointerList::isInList(int value) const
+{
+    PointerListNode *currentNode = head;
+    while (currentNode != NULL)
+    {
+        if (currentNode->value == value)
+            return true;
+        currentNode = currentNode->next;
+    }
+    return false;
 }
 
 void PointerList::add(int value)
 {
-    if (head == NULL)
-        head = new PointerListNode(value);
-    else
-        head->add(value);
+    if (isInList(value))
+        return;
+    PointerListNode *newNode = new PointerListNode;
+    newNode->value = value;
+    newNode->next = head;
+    head = newNode;
 }
 
 void PointerList::del(int value)
 {
     if (head == NULL)
         return;
-    else if (head->getValue() == value)
+    if (head->value == value)
     {
         PointerListNode *removingNode = head;
-        head = head->getNext();
-        removingNode->~PointerListNode();
+        head = head->next->next;
+        delete removingNode;
+        return;
     }
-    else
-        head->del(value);
+    PointerListNode *currentNode = head;
+    PointerListNode *nextNode = head->next;
+    while (nextNode != NULL)
+    {
+        if (nextNode->value == value)
+        {
+            currentNode->next = nextNode->next;
+            delete nextNode;
+            return;
+        }
+        currentNode = nextNode;
+        nextNode = currentNode->next;
+    }
 }
 
 void PointerList::print() const
 {
-    if (head != NULL)
-        head->print();
-    else
-        std::cout << std::endl;
-}
-
-bool PointerList::isInList(int value) const
-{
-    if (head == NULL)
-        return false;
-    else
-        return head->isInList(value);
+    PointerListNode *currentNode = head;
+    while (currentNode != NULL)
+    {
+        std::cout << currentNode->value << ' ';
+        currentNode = currentNode->next;
+    }
+    std::cout << std::endl;
 }
