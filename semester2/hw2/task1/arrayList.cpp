@@ -9,11 +9,8 @@ ArrayList::ArrayList(int maxSize)
     array[0].value = 0;
     array[1].next = 2;
     array[1].value = 0;
-    for (int i = 0; i < maxSize - 1; ++i)
-    {
-        array[i + 2].next = i + 3;
-        array[i + 2].value = 0;
-    }
+    for (int i = 2; i <= maxSize; ++i)
+        array[i].next = i + 1;
     array[maxSize + 1].next = 1;
     array[maxSize + 1].value = 0;
 }
@@ -52,17 +49,18 @@ void ArrayList::del(int value)
 {
     int current = 0;
     int next = array[current].next;
-    while (next != 0 && array[next].value != value)
+    while (next != 0)
     {
+        if (array[next].value == value)
+        {
+            array[current].next = array[next].next;
+            array[next].next = array[1].next;
+            array[1].next = next;
+            return;
+        }
         current = next;
         next = array[current].next;
     }
-    if (next == 0)
-        return;
-    int removing = next;
-    array[current].next = array[removing].next;
-    array[removing].next = array[1].next;
-    array[1].next = removing;
 }
 
 void ArrayList::print() const
@@ -73,5 +71,5 @@ void ArrayList::print() const
         std::cout << array[current].value << ' ';
         current = array[current].next;
     }
-    std::cout << '\n';
+    std::cout << std::endl;
 }
