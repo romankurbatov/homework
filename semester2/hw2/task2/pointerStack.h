@@ -3,7 +3,7 @@
 
 struct PointerStackElement
 {
-    int value;
+    double value;
     PointerStackElement *next;
 };
 
@@ -12,9 +12,9 @@ class PointerStack : public Stack
 public:
     PointerStack();
     ~PointerStack();
-    void push(int value);
-    int pop();
-    int peek() const;
+    void push(double value);
+    double pop();
+    double peek() const;
     bool isEmpty() const;
     bool isFull() const;
 private:

@@ -17,7 +17,7 @@ PointerStack::~PointerStack()
     }
 }
 
-void PointerStack::push(int value)
+void PointerStack::push(double value)
 {
     PointerStackElement *newElement = new PointerStackElement;
     newElement->value = value;
@@ -25,18 +25,18 @@ void PointerStack::push(int value)
     top = newElement;
 }
 
-int PointerStack::pop()
+double PointerStack::pop()
 {
     if (top == NULL)
         return 0;
-    int value = top->value;
+    double value = top->value;
     PointerStackElement *removingElement = top;
     top = top->next;
     delete removingElement;
     return value;
 }
 
-int PointerStack::peek() const
+double PointerStack::peek() const
 {
     if (top == NULL)
         return 0;

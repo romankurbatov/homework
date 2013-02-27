@@ -1,108 +1,141 @@
 #include <iostream>
+#include <cstdio>
 #include "stack.h"
 #include "pointerStack.h"
 #include "arrayStack.h"
 
+
 enum StackType
 {
-    pointer,
-    array
+    pointer = 1,
+    array = 2
 };
 
-void test(StackType type)
+bool getOperands(Stack *stack, double &operand1, double &operand2)
 {
-    enum Operations
+    if (stack->isEmpty())
     {
-        push = 1,
-        pop = 2,
-        peek = 3,
-        isEmpty = 4,
-        isFull = 5,
-        end = 0
-    };
-
-    Stack *stack = NULL;
-    if (type == pointer)
-        stack = new PointerStack();
-    else
-        stack = new ArrayStack();
-
-    while (true)
-    {
-        std::cout << "Тестирование стека на ";
-        if (type == pointer)
-            std::cout << "указателях" << std::endl;
-        else
-            std::cout << "массиве" << std::endl;
-        std::cout << "Возможные действия:" << std::endl;
-        std::cout << push << " - вставить элемент" << std::endl;
-        std::cout << pop << " - извлечь элемент" << std::endl;
-        std::cout << peek << " - вывести значение головного элемента" << std::endl;
-        std::cout << isEmpty << " - проверить, не пуст ли стек" << std::endl;
-        std::cout << isFull << " - проверить, не заполнен ли стек" << std::endl;
-        std::cout << end << " - закончить тестирование" << std::endl;
-        std::cout << "Введите номер операции: ";
-        int operationNumber = end;
-        std::cin >> operationNumber;
-        switch (operationNumber)
-        {
-            case push:
-            {
-                if (stack->isFull())
-                    std::cout << "Стек заполнен!" << std::endl;
-                else
-                {
-                    std::cout << "Введите значение: ";
-                    int value = 0;
-                    std::cin >> value;
-                    stack->push(value);
-                }
-                break;
-            }
-            case pop:
-            {
-                if (stack->isEmpty())
-                    std::cout << "Стек пуст!" << std::endl;
-                else
-                    std::cout << "Значение: " << stack->pop() << std::endl;
-                break;
-            }
-            case peek:
-            {
-                if (stack->isEmpty())
-                    std::cout << "Стек пуст!" << std::endl;
-                else
-                    std::cout << "Значение: " << stack->peek() << std::endl;
-                break;
-            }
-            case isEmpty:
-            {
-                if (stack->isEmpty())
-                    std::cout << "Стек пуст" << std::endl;
-                else
-                    std::cout << "Стек не пуст" << std::endl;
-                break;
-            }
-            case isFull:
-            {
-                if (stack->isFull())
-                    std::cout << "Стек заполнен" << std::endl;
-                else
-                    std::cout << "Стек не заполнен" << std::endl;
-                break;
-            }
-            case end:
-            {
-                delete stack;
-                return;
-            }
-        }
+        std::cout << "Ошибка в выражении" << std::endl;
+        return false;
     }
+    operand2 = stack->pop();
+    if (stack->isEmpty())
+    {
+        std::cout << "Ошибка в выражении" << std::endl;
+        return false;
+    }
+    operand1 = stack->pop();
+    return true;
 }
 
 int main()
 {
-    test(pointer);
-    test(array);
+    std::cout << "Какой стек вы хотите использовать?" << std::endl;
+    std::cout << pointer << " - на указателях" << std::endl;
+    std::cout << array << " - на массиве" << std::endl;
+    std::cout << "Введите номер: ";
+    int type = pointer;
+    std::cin >> type;
+    char c = std::cin.get();
+    while (c != '\n')
+        c = std::cin.get();
+    Stack *stack = NULL;
+    if (type == pointer)
+        stack = new PointerStack;
+    else
+        stack = new ArrayStack;
+    std::cout << "Введите выражение: ";
+    while (true)
+    {
+        c = std::cin.get();
+        switch (c)
+        {
+            case '1': case '2': case '3': case '4': case '5':
+            case '6': case '7': case '8': case '9': case '0':
+            {
+                if (stack->isFull())
+                {
+                    std::cout << "Переполнение стека" << std::endl;
+                    delete stack;
+                    return 0;
+                }
+                stack->push(c - '0');
+                break;
+            }
+            case '+':
+            {
+                double operand1 = 0;
+                double operand2 = 0;
+                if (!getOperands(stack, operand1, operand2))
+                {
+                    delete stack;
+                    return 0;
+                }
+                double result = operand1 + operand2;
+                stack->push(result);
+                break;
+            }
+            case '-':
+            {
+                double operand1 = 0;
+                double operand2 = 0;
+                if (!getOperands(stack, operand1, operand2))
+                {
+                    delete stack;
+                    return 0;
+                }
+                double result = operand1 - operand2;
+                stack->push(result);
+                break;
+            }
+            case '*':
+            {
+                double operand1 = 0;
+                double operand2 = 0;
+                if (!getOperands(stack, operand1, operand2))
+                {
+                    delete stack;
+                    return 0;
+                }
+                double result = operand1 * operand2;
+                stack->push(result);
+                break;
+            }
+            case '/':
+            {
+                double operand1 = 0;
+                double operand2 = 0;
+                if (!getOperands(stack, operand1, operand2))
+                {
+                    delete stack;
+                    return 0;
+                }
+                if (operand2 == 0)
+                {
+                    std::cout << "Деление на ноль" << std::endl;
+                    delete stack;
+                    return 0;
+                }
+                double result = operand1 / operand2;
+                stack->push(result);
+                break;
+            }
+            case '\n': case EOF:
+            {
+                if (stack->isEmpty())
+                    std::cout << "Ошибка в выражении" << std::endl;
+                else
+                    std::cout << "Результат: " << stack->pop() << std::endl;
+                delete stack;
+                return 0;
+            }
+            default:
+            {
+                std::cout << "Некорректный симовол" << std::endl;
+                delete stack;
+                return 0;
+            }
+        }
+    }
 }
 

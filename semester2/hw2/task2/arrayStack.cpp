@@ -3,7 +3,7 @@
 ArrayStack::ArrayStack(int size)
 {
     this->size = size;
-    array = new int[size];
+    array = new double[size];
     position = 0;
 }
 
@@ -12,7 +12,7 @@ ArrayStack::~ArrayStack()
     delete[] array;
 }
 
-void ArrayStack::push(int value)
+void ArrayStack::push(double value)
 {
     if (position == size)
         return;
@@ -20,7 +20,7 @@ void ArrayStack::push(int value)
     ++position;
 }
 
-int ArrayStack::pop()
+double ArrayStack::pop()
 {
     if (position == 0)
         return 0;
@@ -28,7 +28,7 @@ int ArrayStack::pop()
     return array[position];
 }
 
-int ArrayStack::peek() const
+double ArrayStack::peek() const
 {
     if (position == 0)
         return 0;
