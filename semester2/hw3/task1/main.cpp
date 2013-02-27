@@ -2,13 +2,15 @@
 #include "sorter.h"
 #include "selectionSorter.h"
 #include "quickSorter.h"
+#include "heapSorter.h"
 
 int main()
 {
     enum Algorithms
     {
         selection = 1,
-        quick = 2
+        quick = 2,
+        heap = 3
     };
 
     std::cout << "Введите количество элементов в массиве: ";
@@ -23,6 +25,7 @@ int main()
     std::cout << "Алгоритмы сортировки:" << std::endl;
     std::cout << selection << " - сортировка выбором" << std::endl;
     std::cout << quick << " - быстрая сортировка" << std::endl;
+    std::cout << heap << " - пирамидальная сортировка" << std::endl;
     std::cout << "Введите номер алгоритма: ";
     int algorithm = selection;
     std::cin >> algorithm;
@@ -30,8 +33,10 @@ int main()
     Sorter *sorter = NULL;
     if (algorithm == selection)
         sorter = new SelectionSorter;
-    else
+    else if (algorithm == quick)
         sorter = new QuickSorter;
+    else
+        sorter = new HeapSorter;
     sorter->sort(array, size);
 
     std::cout << "Массив после сортировки: ";

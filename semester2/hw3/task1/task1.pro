@@ -5,11 +5,13 @@ CONFIG -= qt
 SOURCES += main.cpp \
     selectionSorter.cpp \
     quickSorter.cpp \
-    swap.cpp
+    swap.cpp \
+    heapSorter.cpp
 
 HEADERS += \
     sorter.h \
     selectionSorter.h \
     quickSorter.h \
-    swap.h
+    swap.h \
+    heapSorter.h
 
