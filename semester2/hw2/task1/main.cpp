@@ -81,6 +81,7 @@ void test(ListTypes type)
             }
             case end:
             {
+                delete list;
                 return;
             }
             default:
