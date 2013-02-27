@@ -93,11 +93,11 @@ void test(StackType type)
             }
             case end:
             {
+                delete stack;
                 return;
             }
         }
     }
-    delete stack;
 }
 
 int main()
