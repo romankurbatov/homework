@@ -11,10 +11,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        calculator.cpp \
-    computer.cpp
+        calculator.cpp
 
-HEADERS  += calculator.h \
-    computer.h
+HEADERS  += calculator.h
 
 FORMS    += calculator.ui

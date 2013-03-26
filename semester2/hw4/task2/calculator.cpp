@@ -6,9 +6,10 @@ Calculator::Calculator(QWidget *parent) :
     ui(new Ui::Calculator)
 {
     ui->setupUi(this);
-    QObject::connect(this->ui->firstArgument, SIGNAL(valueChanged(int)), this, SLOT(emitSomethingChanged()));
-    QObject::connect(this->ui->secondArgument, SIGNAL(valueChanged(int)), this, SLOT(emitSomethingChanged()));
-    QObject::connect(this->ui->operation, SIGNAL(currentIndexChanged(int)), this, SLOT(emitSomethingChanged()));
+    setFixedSize(size());
+    QObject::connect(ui->firstArgument, SIGNAL(valueChanged(int)), this, SLOT(calculate()));
+    QObject::connect(ui->secondArgument, SIGNAL(valueChanged(int)), this, SLOT(calculate()));
+    QObject::connect(ui->operation, SIGNAL(currentIndexChanged(int)), this, SLOT(calculate()));
 }
 
 Calculator::~Calculator()
@@ -16,27 +17,37 @@ Calculator::~Calculator()
     delete ui;
 }
 
-int Calculator::getFirstArgument() const
+void Calculator::calculate()
 {
-    return ui->firstArgument->value();
-}
-
-int Calculator::getSecondArgument() const
-{
-    return ui->secondArgument->value();
-}
-
-char Calculator::getOpreation() const
-{
-    return ui->operation->currentText()[0].toAscii();
-}
-
-void Calculator::setResult(const QString &result)
-{
-    this->ui->result->setText(result);
-}
-
-void Calculator::emitSomethingChanged()
-{
-    emit somethingChanged();
+    int argument1 = ui->firstArgument->value();
+    int argument2 = ui->secondArgument->value();
+    char operation = ui->operation->currentText()[0].toAscii();
+    QString resultString;
+    switch (operation)
+    {
+        case '+':
+        {
+            resultString = QString::number(argument1 + argument2);
+            break;
+        }
+        case '-':
+        {
+            resultString = QString::number(argument1 - argument2);
+            break;
+        }
+        case '*':
+        {
+            resultString = QString::number(argument1 * argument2);
+            break;
+        }
+        case '/':
+        {
+            if (argument2 == 0)
+                resultString = 'E';
+            else
+                resultString = QString::number(argument1 / argument2);
+            break;
+        }
+    }
+    ui->result->setText(resultString);
 }

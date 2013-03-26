@@ -13,16 +13,13 @@ class Calculator : public QWidget
 public:
     explicit Calculator(QWidget *parent = 0);
     ~Calculator();
-    int getFirstArgument() const;
-    int getSecondArgument() const;
-    char getOpreation() const;
-    void setResult(const QString &result);
 
 signals:
-    void somethingChanged();
+
+private slots:
+    void calculate();
 
 public slots:
-    void emitSomethingChanged();
     
 private:
     Ui::Calculator *ui;
