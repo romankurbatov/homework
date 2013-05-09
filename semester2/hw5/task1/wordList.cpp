@@ -77,7 +77,7 @@ int WordList::getLength() const
     return length;
 }
 
-bool WordList::isInList(const std::string &word)
+bool WordList::isInList(const std::string &word) const
 {
     Node *currentNode = head;
     while (currentNode != nullptr)

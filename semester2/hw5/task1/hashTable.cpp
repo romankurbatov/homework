@@ -44,7 +44,7 @@ void HashTable::changeHashFunction(HashTable::HashFunction *hash)
     this->hash = hash;
 }
 
-bool HashTable::isInTable(const std::string &word)
+bool HashTable::isInTable(const std::string &word) const
 {
     int value = (*hash)(word, size);
     return table[value].isInList(word);
