@@ -39,11 +39,6 @@ void HashTable::showStatistics() const
     std::cout << "Коэффициент заполнения: " << static_cast<double>(numberOfWords) / size << std::endl;
 }
 
-void HashTable::changeHashFunction(HashTable::HashFunction *hash)
-{
-    this->hash = hash;
-}
-
 bool HashTable::isInTable(const std::string &word) const
 {
     int value = (*hash)(word, size);

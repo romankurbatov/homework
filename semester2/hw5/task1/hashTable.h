@@ -12,7 +12,6 @@ public:
     void add(const std::string &word);
     void remove(const std::string &word);
     void showStatistics() const;
-    void changeHashFunction(HashFunction *hash);
     bool isInTable(const std::string &word) const;
     void print() const;
 private:

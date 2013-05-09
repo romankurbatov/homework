@@ -24,16 +24,26 @@ HashTable::HashFunction *hash[] = { &hash1, &hash2 };
 
 int main()
 {
+    std::cout << "Тестирование хеш-таблицы" << std::endl;
+
+    std::cout << "Введите номер хеш-функции (1 или 2): ";
     int functionNumber = 0;
-    HashTable table(hash[functionNumber]);
+    std::cin >> functionNumber;
+    if (functionNumber != 1 && functionNumber != 2)
+    {
+        std::cout << "Недопустимый номер хеш-функции" << std::endl;
+        return 0;
+    }
+
+    HashTable table(hash[functionNumber - 1]);
+
     enum Operations
     {
         add = 1,
         remove = 2,
         search = 3,
         statistics = 4,
-        changeFunction = 5,
-        print = 6,
+        print = 5,
         exit = 0
     };
 
@@ -41,14 +51,11 @@ int main()
     while (!testingIsFinished)
     {
         int operation = exit;
-        std::cout << "Тестирование хеш-таблицы" << std::endl;
-        std::cout << "Используется хеш-функция № " << functionNumber << std::endl;
         std::cout << "Возможные действия:" << std::endl
                   << add << " - добавить слово" << std::endl
                   << remove << " - удалить слово" << std::endl
                   << search << " - поиск слова" << std::endl
                   << statistics << " - показать статистику использования" << std::endl
-                  << changeFunction << " - сменить хеш-функцию" << std::endl
                   << print << " - вывести таблицу" << std::endl
                   << exit << " - выход" << std::endl;
         std::cout << "Введите номер операции: ";
@@ -97,17 +104,6 @@ int main()
             {
                 std::cout << "Статистика использования" << std::endl;
                 table.showStatistics();
-                std::cout << std::endl;
-                break;
-            }
-            case changeFunction:
-            {
-                if (functionNumber == 0)
-                    functionNumber = 1;
-                else
-                    functionNumber = 0;
-                table.changeHashFunction(hash[functionNumber]);
-                std::cout << "Теперь используется хеш-функция №" << functionNumber << std::endl;
                 std::cout << std::endl;
                 break;
             }
