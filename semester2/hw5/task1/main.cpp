@@ -16,7 +16,7 @@ int hash2(const std::string &word, const int hashSize)
     int result = 0;
     int length = word.length();
     for (int i = 0; i < length; ++i)
-        result = (static_cast<unsigned char>(word[i]) + 31 * result) % hashSize;
+        result = (static_cast<unsigned char>(word[i]) + (hashSize - 1) * result) % hashSize;
     return result;
 }
 
