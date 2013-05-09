@@ -22,6 +22,12 @@ int hash2(const std::string &word, const int hashSize)
 
 HashTable::HashFunction *hash[] = { &hash1, &hash2 };
 
+void clearInput()
+{
+    while (std::cin.get() != '\n')
+        ;
+}
+
 int main()
 {
     std::cout << "Тестирование хеш-таблицы" << std::endl;
@@ -34,6 +40,7 @@ int main()
         std::cout << "Недопустимый номер хеш-функции" << std::endl;
         return 0;
     }
+    clearInput();
 
     HashTable table(hash[functionNumber - 1]);
 
@@ -61,9 +68,7 @@ int main()
         std::cout << "Введите номер операции: ";
         std::cin >> operation;
 
-        //удаляем из потока символы, оставшиеся после чтения номера действия
-        std::string s;
-        std::getline(std::cin, s);
+        clearInput();
 
         switch (operation)
         {
