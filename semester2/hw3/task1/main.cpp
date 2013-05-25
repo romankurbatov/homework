@@ -3,9 +3,15 @@
 #include "selectionSorter.h"
 #include "quickSorter.h"
 #include "heapSorter.h"
+#include "heapSorterTest.h"
+#include "quickSorterTest.h"
+#include "selectionSorterTest.h"
 
 int main()
 {
+    /*
+    //код для интерактивного тестирования
+    //потерял смысл после добавления модульного тестирования
     enum Algorithms
     {
         selection = 1,
@@ -45,5 +51,12 @@ int main()
     std::cout << std::endl;
     delete sorter;
     delete[] array;
+    */
+    HeapSorterTest heapTest;
+    QTest::qExec(&heapTest);
+    QuickSorterTest quickTest;
+    QTest::qExec(&quickTest);
+    SelectionSorterTest selectionTest;
+    QTest::qExec(&selectionTest);
 }
 

@@ -1,6 +1,8 @@
 TEMPLATE = app
 CONFIG += console
-CONFIG -= qt
+CONFIG -= app_bundle
+
+QT += testlib
 
 SOURCES += main.cpp \
     selectionSorter.cpp \
@@ -13,5 +15,8 @@ HEADERS += \
     selectionSorter.h \
     quickSorter.h \
     swap.h \
-    heapSorter.h
+    heapSorter.h \
+    heapSorterTest.h \
+    quickSorterTest.h \
+    selectionSorterTest.h
 
