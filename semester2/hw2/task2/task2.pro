@@ -1,6 +1,8 @@
 TEMPLATE = app
 CONFIG += console
-CONFIG -= qt
+CONFIG -= app_bundle
+
+QT += testlib
 
 SOURCES += main.cpp \
     pointerStack.cpp \
@@ -9,5 +11,7 @@ SOURCES += main.cpp \
 HEADERS += \
     stack.h \
     pointerStack.h \
-    arrayStack.h
+    arrayStack.h \
+    pointerStackTest.h \
+    arrayStackTest.h
 

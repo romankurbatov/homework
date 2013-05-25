@@ -3,8 +3,12 @@
 #include "stack.h"
 #include "pointerStack.h"
 #include "arrayStack.h"
+#include "pointerStackTest.h"
+#include "arrayStackTest.h"
 
-
+/*
+//код для интерактивного тестирования
+//потерял смысл после введения модульного тестирования
 enum StackType
 {
     pointer = 1,
@@ -27,9 +31,12 @@ bool getOperands(Stack *stack, double &operand1, double &operand2)
     operand1 = stack->pop();
     return true;
 }
+*/
 
 int main()
 {
+    /*
+    //код для интерактивного тестирования
     std::cout << "Какой стек вы хотите использовать?" << std::endl;
     std::cout << pointer << " - на указателях" << std::endl;
     std::cout << array << " - на массиве" << std::endl;
@@ -137,5 +144,12 @@ int main()
             }
         }
     }
+    */
+
+    PointerStackTest pointerTest;
+    QTest::qExec(&pointerTest);
+
+    ArrayStackTest arrayTest;
+    QTest::qExec(&arrayTest);
 }
 
