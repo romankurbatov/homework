@@ -1,11 +1,6 @@
 #pragma once
 #include "list.h"
 
-struct PointerListNode
-{
-    int value;
-    PointerListNode *next;
-};
 
 class PointerList : public List
 {
@@ -17,5 +12,10 @@ public:
     void del(int value);
     void print() const;
 private:
+    struct PointerListNode
+    {
+        int value;
+        PointerListNode *next;
+    };
     PointerListNode *head;
 };

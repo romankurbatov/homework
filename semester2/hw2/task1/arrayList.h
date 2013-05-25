@@ -1,11 +1,6 @@
 #pragma once
 #include "list.h"
 
-struct ArrayListNode
-{
-    int value;
-    int next;
-};
 
 class ArrayList : public List
 {
@@ -17,6 +12,11 @@ public:
     void del(int value);
     void print() const;
 private:
+    struct ArrayListNode
+    {
+        int value;
+        int next;
+    };
     int maxSize;
     ArrayListNode *array;
 };
