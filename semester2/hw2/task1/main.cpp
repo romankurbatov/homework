@@ -2,7 +2,8 @@
 #include "list.h"
 #include "pointerList.h"
 #include "arrayList.h"
-#include "listTest.h"
+#include "pointerListTest.h"
+#include "arrayListTest.h"
 
 /*
 //код для выполнения интерактивного тестирования
@@ -105,7 +106,10 @@ int main()
     test(pointer);
     test(array);
     */
-    ListTest test;
-    QTest::qExec(&test);
+    PointerListTest pointerTest;
+    QTest::qExec(&pointerTest);
+
+    ArrayListTest arrayTest;
+    QTest::qExec(&arrayTest);
 }
 

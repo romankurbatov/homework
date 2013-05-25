@@ -12,5 +12,6 @@ HEADERS += \
     list.h \
     pointerList.h \
     arrayList.h \
-    listTest.h
+    pointerListTest.h \
+    arrayListTest.h
 
