@@ -48,7 +48,7 @@ void PointerList::del(int value)
     if (head->value == value)
     {
         PointerListNode *removingNode = head;
-        head = head->next->next;
+        head = head->next;
         delete removingNode;
         return;
     }

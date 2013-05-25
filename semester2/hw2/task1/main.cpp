@@ -2,7 +2,11 @@
 #include "list.h"
 #include "pointerList.h"
 #include "arrayList.h"
+#include "listTest.h"
 
+/*
+//код для выполнения интерактивного тестирования
+//потерял смысл после добавления модульного тестирования
 enum ListTypes
 {
     pointer,
@@ -92,10 +96,16 @@ void test(ListTypes type)
         }
     }
 }
+*/
 
 int main()
 {
+    /*
+    //вызов функции интерактивного тестирования
     test(pointer);
     test(array);
+    */
+    ListTest test;
+    QTest::qExec(&test);
 }
 
