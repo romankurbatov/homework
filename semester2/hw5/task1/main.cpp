@@ -2,7 +2,11 @@
 #include <string>
 #include "hashTable.h"
 #include "hashFunctions.h"
+#include "hashTableTest.h"
 
+/*
+//код для интерактивного тестирования
+//потерял смысл после добавления модульного тестирования
 HashTable::HashFunction *hash[] = { &hash1, &hash2 };
 
 void clearInput()
@@ -10,9 +14,12 @@ void clearInput()
     while (std::cin.get() != '\n')
         ;
 }
+*/
 
 int main()
 {
+    /*
+    //код для интерактивного тестирования
     std::cout << "Тестирование хеш-таблицы" << std::endl;
 
     std::cout << "Введите номер хеш-функции (1 или 2): ";
@@ -115,5 +122,8 @@ int main()
             }
         }
     }
+    */
+    HashTableTest test;
+    QTest::qExec(&test);
 }
 

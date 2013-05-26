@@ -1,7 +1,8 @@
 TEMPLATE = app
 CONFIG += console
 CONFIG -= app_bundle
-CONFIG -= qt
+
+QT += testlib
 
 SOURCES += main.cpp \
     hashTable.cpp \
@@ -11,6 +12,7 @@ SOURCES += main.cpp \
 HEADERS += \
     hashTable.h \
     wordList.h \
-    hashFunctions.h
+    hashFunctions.h \
+    hashTableTest.h
 
 QMAKE_CXXFLAGS += -std=c++11
