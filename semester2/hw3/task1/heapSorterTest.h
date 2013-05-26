@@ -31,6 +31,6 @@ private slots:
         const int size = sizeof array / sizeof *array;
         sorter->sort(array, size);
         for (int i = 0; i < size - 1; ++i)
-            QVERIFY(array[i] < array[i + 1]);
+            QVERIFY(array[i] <= array[i + 1]);
     }
 };
