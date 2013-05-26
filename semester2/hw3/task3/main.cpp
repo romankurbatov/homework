@@ -1,8 +1,12 @@
 #include <iostream>
 #include "matrix.h"
+#include "matrixTest.h"
 
 int main()
 {
+    /*
+    //код для интерактивного тестирования
+    //потерял смысл после добавленияв модульного тестирования
     std::cout << "Введите количество строк: ";
     int numberOfRows = 0;
     std::cin >> numberOfRows;
@@ -25,5 +29,8 @@ int main()
 
     std::cout << "Матрица после сортировки:" << std::endl;
     matrix.print();
+    */
+    MatrixTest test;
+    QTest::qExec(&test);
 }
 

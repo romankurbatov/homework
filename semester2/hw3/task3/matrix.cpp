@@ -67,3 +67,20 @@ void Matrix::sortColumns()
 {
     sortColumns(0, numberOfColumns - 1);
 }
+
+int Matrix::getNumberOfRows() const
+{
+    return numberOfRows;
+}
+
+int Matrix::getNumberOfColumns() const
+{
+    return numberOfColumns;
+}
+
+int Matrix::getElement(const int row, const int column)
+{
+    if (column >= numberOfColumns || column < 0 || row >= numberOfRows || row < 0)
+        return 0;
+    return matrix[column][row];
+}

@@ -1,11 +1,13 @@
 TEMPLATE = app
 CONFIG += console
 CONFIG -= app_bundle
-CONFIG -= qt
+
+QT += testlib
 
 SOURCES += main.cpp \
     matrix.cpp
 
 HEADERS += \
-    matrix.h
+    matrix.h \
+    matrixTest.h
 

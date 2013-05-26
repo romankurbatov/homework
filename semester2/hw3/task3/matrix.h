@@ -8,6 +8,9 @@ public:
     void fillRandom();
     void print() const;
     void sortColumns();
+    int getNumberOfRows() const;
+    int getNumberOfColumns() const;
+    int getElement(const int row, const int column);
 private:
     const int numberOfRows;
     const int numberOfColumns;
